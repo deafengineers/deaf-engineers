@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デザイン選択 - デフエンジニアの会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: '851Gkktt';
+            src: url('fonts/851Gkktt_005.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #1a1f3a;
+            --text-primary: #e0e6ed;
+            --text-secondary: #b8b8b8;
+            --neon-cyan: #00ffff;
+            --neon-blue: #00d4ff;
+            --neon-purple: #b24bf3;
+            --neon-green: #39ff14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DotGothic16', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .logo {
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+        }
+
+        .title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .terminal-prompt {
+            color: var(--neon-green);
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            margin-bottom: 10px;
+        }
+
+        /* Notice Box */
+        .notice-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .notice-title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.3rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .notice-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .notice-content p {
+            margin-bottom: 15px;
+        }
+
+        .notice-content strong {
+            color: var(--neon-cyan);
+        }
+
+        .notice-divider {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .notice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .notice-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 15px;
+            background: rgba(26, 31, 58, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .notice-label {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .notice-accessibility {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 3px solid var(--neon-cyan);
+            border-radius: 5px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Design Concept Section */
+        .concept-section {
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .concept-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .concept-title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.3rem);
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .concept-content {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-primary);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .concept-content p {
+            margin-bottom: 20px;
+        }
+
+        .concept-content strong {
+            color: var(--neon-blue);
+            font-weight: 700;
+        }
+
+        .highlight-cyan {
+            color: var(--neon-cyan) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .highlight-green {
+            color: var(--neon-green) !important;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+
+        /* Version Selection Section */
+        .version-selection-section {
+            background: rgba(26, 31, 58, 0.6);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .selection-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .selection-title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .selection-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .version-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .version-card {
+            background: rgba(26, 31, 58, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .version-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .version-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .version-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .version-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .version-card:hover::before {
+            left: 100%;
+        }
+
+        .version-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 
+                0 10px 40px rgba(0, 212, 255, 0.3),
+                inset 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .version-name {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .version-label {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .version-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .version-features {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-icon {
+            color: var(--neon-green);
+        }
+
+        .version-recommend {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            font-size: 0.85rem;
+            color: var(--neon-blue);
+            font-weight: 700;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 20px;
+            background: rgba(26, 31, 58, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .version-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                margin-bottom: 40px;
+            }
+
+            .notice-box {
+                padding: 20px;
+            }
+
+            .notice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .concept-section {
+                padding: 25px;
+            }
+
+            .concept-content {
+                font-size: 1rem;
+            }
+
+            .version-selection-section {
+                padding: 30px 20px;
+            }
+
+            .selection-header {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Particle effect */
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat 3s ease-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+            }
+        }
+
+        /* Survey Section */
+        .survey-section {
+            margin-top: 60px;
+            padding: 50px;
+            background: rgba(26, 31, 58, 0.6);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .survey-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .survey-title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        .survey-description {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .survey-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .label-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            color: var(--neon-cyan);
+            margin-right: 10px;
+            font-family: '851Gkktt', sans-serif;
+        }
+
+        .required {
+            color: #ff4444;
+            margin-left: 5px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(26, 31, 58, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .radio-label:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .radio-label input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-blue);
+            border-radius: 50%;
+            margin-right: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .radio-label input[type="radio"]:checked ~ .radio-custom {
+            border-color: var(--neon-cyan);
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .radio-label input[type="radio"]:checked ~ .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 50%;
+        }
+
+        .radio-label input[type="radio"]:checked ~ span:last-child {
+            color: var(--neon-cyan);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(26, 31, 58, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: 'DotGothic16', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .form-textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .submit-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 50px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50px;
+            color: var(--neon-cyan);
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .submit-button:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .submit-button:hover {
+            color: var(--bg-primary);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .button-icon,
+        .submit-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        /* Responsive for survey */
+        @media (max-width: 768px) {
+            .survey-section {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+
+            .radio-label {
+                padding: 12px 15px;
+            }
+
+            .submit-button {
+                padding: 15px 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="images/logo-banner.png" alt="デフエンジニアの会" class="logo">
+            <div class="terminal-prompt">$ select --design-version</div>
+            <h1 class="title">デザインを選択してください</h1>
+            <p class="subtitle">
+                3つのデザインバージョンをご用意しました。お好みのバージョンをクリックしてサイトをご覧ください。
+            </p>
+        </div>
+
+        <!-- Notice Section -->
+        <div class="notice-box">
+            <div class="notice-title">ご確認ください</div>
+            <div class="notice-content">
+                <p><strong>現在試験公開中です。</strong>できるだけ<strong>PCで</strong>ご覧ください。</p>
+                <p class="notice-divider">推奨環境</p>
+                <div class="notice-grid">
+                    <div class="notice-item">
+                        <div class="notice-label">デバイス</div>
+                        <div>
+                            PC推奨（タブレット・スマホは一部機能が制限される場合があります）
+                        </div>
+                    </div>
+                    <div class="notice-item">
+                        <div class="notice-label">ブラウザ</div>
+                        <div>
+                            Chrome、Firefox、Edge、Safari（最新版）
+                        </div>
+                    </div>
+                </div>
+                <p class="notice-accessibility">
+                    <strong>アクセシビリティについて：</strong><br>
+                    なるべく対応しましたが、まだ足りない部分もあるかと思います。<br>
+                    デザイン決定後、アクセシビリティに詳しい方にチェックをお願いする予定です。
+                </p>
+            </div>
+        </div>
+
+        <!-- Design Concept Section -->
+        <div class="concept-section">
+            <div class="concept-header">
+                <div class="terminal-prompt">$ about --design-concept</div>
+                <h2 class="concept-title">このサイトについて</h2>
+            </div>
+            <div class="concept-content">
+                <p>
+                    デフエンジニアの会は、<strong>エンジニアらしいテクノロジー的な雰囲気</strong>を表現するため、<strong>サイバーパンク風のデザイン</strong>で作成しました。
+                </p>
+                <p>
+                    フォントは、<strong>エンジニアの過去の歴史と未来どちらも大事にする</strong>、という意味で、<strong class="highlight-cyan">未来的なイメージのフォント</strong>と、<strong class="highlight-green">昔懐かしいイメージのドットフォント</strong>を使っています。
+                </p>
+            </div>
+        </div>
+
+        <!-- Version Selection Section -->
+        <div class="version-selection-section">
+            <div class="selection-header">
+                <div class="terminal-prompt">$ select --version</div>
+                <h2 class="selection-title">どのサイトデザインが良いですか？</h2>
+                <p class="selection-description">
+                    下記の3つのデザインバージョンからお選びください。
+                </p>
+            </div>
+
+        <div class="version-grid">
+            <!-- Standard Version -->
+            <a href="index-standard.html" class="version-card" target="_blank" rel="noopener">
+                <div class="version-label">Standard</div>
+                <h2 class="version-name">スタンダード版</h2>
+                <p class="version-description">
+                    シンプルで軽量なベーシックデザイン。どの環境でも快適に閲覧できます。
+                </p>
+                <div class="version-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>軽量・高速</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>全デバイス対応</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>安定動作</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- CSS 3D Version -->
+            <a href="index-3d.html" class="version-card" target="_blank" rel="noopener">
+                <div class="version-label">CSS 3D</div>
+                <h2 class="version-name">CSS 3D版</h2>
+                <p class="version-description">
+                    スタンダード版に3Dアニメーションを追加。「ろうなんサポネット」「技術書典15」などのカードをマウスホバーするとゲーミング風に立体的に動きます。
+                </p>
+                <div class="version-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>カード3Dエフェクト</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>視差スクロール効果</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>インタラクティブ演出</span>
+                    </div>
+                </div>
+                <div class="version-recommend">
+                    推奨: PC + モダンブラウザ
+                </div>
+            </a>
+
+            <!-- Three.js Portfolio Version -->
+            <a href="index-portfolio.html" class="version-card" target="_blank" rel="noopener">
+                <div class="version-label">Three.js</div>
+                <h2 class="version-name">3D背景版</h2>
+                <p class="version-description">
+                    Three.jsによる本格的な3D背景を体験できます。
+                </p>
+                <div class="version-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>WebGL 3D背景</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>パーティクル効果</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>インタラクティブ</span>
+                    </div>
+                </div>
+                <div class="version-recommend">
+                    推奨: PC + WebGL対応ブラウザ
+                </div>
+            </a>
+        </div>
+        </div><!-- /.version-selection-section -->
+
+        <div class="footer-note">
+            ヒント：各バージョンは同じコンテンツですが、視覚効果が異なります。<br>
+            お使いのデバイスやブラウザで最も快適なバージョンをお選びください。
+        </div>
+
+        <!-- Survey Section -->
+        <div class="survey-section">
+            <div class="survey-header">
+                <div class="terminal-prompt">$ feedback --survey</div>
+                <h2 class="survey-title">アンケートにご協力ください</h2>
+                <p class="survey-description">
+                    よりよいサイトづくりのため、皆さまのご意見をお聞かせください。
+                </p>
+            </div>
+
+            <form id="surveyForm" class="survey-form" action="https://formsubmit.co/deaf.engineers.japan@gmail.com" method="POST">
+                <!-- FormSubmit settings -->
+                <input type="hidden" name="_subject" value="【デザインアンケート】デフエンジニアの会サイト">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <!-- 送信後、thanks.htmlにリダイレクト（本番環境では完全なURLに変更してください） -->
+                <!-- <input type="hidden" name="_next" value="https://yourdomain.com/thanks.html"> -->
+                
+                <!-- Question 1 -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <span class="label-icon">1.</span>
+                        どのサイトデザインが良いですか？<span class="required">*</span>
+                    </label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="design_choice" value="スタンダード版" required>
+                            <span class="radio-custom"></span>
+                            <span>スタンダード版</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="design_choice" value="CSS 3D版" required>
+                            <span class="radio-custom"></span>
+                            <span>CSS 3D版</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="design_choice" value="3D背景版" required>
+                            <span class="radio-custom"></span>
+                            <span>3D背景版</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="form-group">
+                    <label class="form-label" for="reason">
+                        <span class="label-icon">2.</span>
+                        選んだ理由は？<span class="required">*</span>
+                    </label>
+                    <textarea 
+                        id="reason" 
+                        name="reason" 
+                        class="form-textarea" 
+                        rows="4" 
+                        placeholder="例：見やすい、動きが面白い、シンプルで好き、など"
+                        required
+                    ></textarea>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="form-group">
+                    <label class="form-label" for="suggestions">
+                        <span class="label-icon">3.</span>
+                        ここをこうしたらもっと良くなるなど何か意見があれば記入してください
+                    </label>
+                    <textarea 
+                        id="suggestions" 
+                        name="suggestions" 
+                        class="form-textarea" 
+                        rows="5" 
+                        placeholder="改善提案、追加してほしい機能、気になった点など、自由にご記入ください"
+                    ></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit">
+                    <button type="submit" class="submit-button">
+                        <span class="button-icon">📧</span>
+                        <span>送信する</span>
+                    </button>
+                </div>
+
+                <p class="form-note">
+                    ※ ご回答いただいた内容は、サイト改善の参考にさせていただきます。
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Particle effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.bottom = '0px';
+            particle.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 3000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Log selection
+        document.querySelectorAll('.version-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const version = this.querySelector('.version-name').textContent;
+                console.log(`Selected: ${version}`);
+            });
+        });
+
+        // Form submission handling
+        const surveyForm = document.getElementById('surveyForm');
+        
+        surveyForm.addEventListener('submit', function(e) {
+            const submitButton = this.querySelector('.submit-button');
+            submitButton.innerHTML = '<span>送信中...</span>';
+            submitButton.disabled = true;
+            
+            // Log submission
+            const formData = new FormData(this);
+            console.log('Survey submitted:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+        });
+    </script>
+</body>
+</html>

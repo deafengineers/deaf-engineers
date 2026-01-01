@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デフエンジニアの会 - 3D Interactive</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="style-3d.css">
+</head>
+<body>
+    <!-- Interactive cursor follower -->
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Particle container with 3D effect -->
+    <div class="particle-container-3d" aria-hidden="true">
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+        <div class="particle-3d"></div>
+    </div>
+
+    <!-- Code rain with depth -->
+    <div class="code-rain-3d" aria-hidden="true">
+        <div class="code-column-3d" style="left: 5%; animation-delay: 0s;">01101000 01100101 01101100 01101100 01101111</div>
+        <div class="code-column-3d" style="left: 15%; animation-delay: 2s;">const engineer = true;</div>
+        <div class="code-column-3d" style="left: 25%; animation-delay: 4s;">function create() { return innovation; }</div>
+        <div class="code-column-3d" style="left: 35%; animation-delay: 6s;">while(learning) { skills++; }</div>
+        <div class="code-column-3d" style="left: 45%; animation-delay: 8s;">git commit -m "future"</div>
+        <div class="code-column-3d" style="left: 55%; animation-delay: 10s;">npm install creativity</div>
+        <div class="code-column-3d" style="left: 65%; animation-delay: 12s;">sudo apt-get innovation</div>
+        <div class="code-column-3d" style="left: 75%; animation-delay: 14s;">console.log("技術で未来を");</div>
+        <div class="code-column-3d" style="left: 85%; animation-delay: 16s;">01010100 01100101 01100011 01101000</div>
+    </div>
+
+    <!-- Navigation with 3D effect -->
+    <header>
+    <h1 class="visually-hidden">デフエンジニアの会 - ろう者・難聴者のエンジニアコミュニティ</h1>
+        <nav class="nav-3d" aria-label="メインナビゲーション">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="members-3d.html">Members</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#projects">Past Events</a></li>
+            <li><a href="#schedule">Upcoming Events</a></li>
+            <li><a href="https://qiita.com/deafengineers" target="_blank" rel="noopener noreferrer">Blog<span class="visually-hidden">（新しいウィンドウで開く）</span></a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    </header>
+
+    <!-- Hero Section with 3D -->
+    <section id="home" class="hero hero-3d">
+        <div class="hero-content">
+            <div class="logo-3d-container">
+                <img src="images/logo-banner.png" alt="デフエンジニアの会" class="logo-3d">
+            </div>
+            <p>
+                <span class="terminal-text">$ echo "Welcome!"</span><br>
+                デフ（Deaf）＋ エンジニア　＝　ろう者・難聴者のエンジニア※聴者のメンバーも含む
+            </p>
+            <a href="#about" class="cta-button cta-3d">Initialize</a>
+        </div>
+    </section>
+
+    <!-- About Section with parallax -->
+    <section id="about" class="section-3d" aria-labelledby="about-title">
+        <div class="container">
+            <h2 id="about-title" class="section-title title-3d">// About</h2>
+            <div class="about-content">
+                <div class="content-card-3d">
+                    <h3>// Mission</h3>
+                    <p>デフエンジニアの会は、ろう者・難聴者のエンジニアを中心に手話や文字で交流し共に学び成長できる環境を作り、デフエンジニアの社会的地位を高めることを目指しています。</p>
+                </div>
+                
+                <div class="content-card-3d">
+                    <h3>// Activities</h3>
+                    <p>勉強会・デフハッカソン・交流会などを開催し、デフエンジニア同士のスキルアップ・情報交換の場を設けています。また、オープンソースプロジェクトへの貢献や手話でエンジニア用語を作成し広める活動を通じてデフエンジニアの存在を可視化し、働く環境を良くすることも目指しています。</p>
+                </div>
+                
+                <div class="content-card-3d">
+                    <h3>// Blog</h3>
+                    <p>デフエンジニアの会についてさらに詳しく知りたい方は、Qiitaの記事をご覧ください。<br>
+                    <a href="https://qiita.com/deafengineers/items/22d1814ff85033936ae9" target="_blank" rel="noopener noreferrer" aria-label="デフエンジニアの会の紹介記事を読む（新しいウィンドウで開く）" style="color: var(--neon-blue); text-decoration: underline;">デフエンジニアの会の紹介記事を読む →</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section with 3D cards -->
+    <section id="achievements" class="section-3d" aria-labelledby="achievements-title">
+        <div class="container">
+            <h2 id="achievements-title" class="section-title title-3d">// Achievements</h2>
+            <div class="card-grid-3d">
+                <div class="tech-card card-3d">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>ろうなんサポネット</h3>
+                            <p class="member-tag">サイト作成協力</p>
+                            <p>ろう者・難聴者のための情報サイト「ろうなんサポネット」の制作に協力しました。</p>
+                            <a href="https://dhir.jp/kb/" target="_blank" rel="noopener noreferrer" aria-label="ろうなんサポネットのサイトを見る（新しいウィンドウで開く）" style="color: var(--neon-cyan); text-decoration: underline;">サイトを見る →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card card-3d">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>技術書典15</h3>
+                            <p class="member-tag">エポックメイキング部門 受賞</p>
+                            <p>技術書典15に出展し、デフエンジニアの会の活動や技術情報を発信しました。そしてエポックメイキング部門で賞をいただきました。</p>
+                            <a href="https://techbookfest.org/event/tbf15" target="_blank" rel="noopener noreferrer" aria-label="技術書典15のイベントページを見る（新しいウィンドウで開く）" style="color: var(--neon-cyan); text-decoration: underline;">イベントページ →</a><br>
+                            <a href="https://techbookfest.org/product/486PQK4z5NM3QqJrqRCRpk" aria-label="技術書典15のオンラインマーケットを見る（新しいウィンドウで開く）" target="_blank" rel="noopener noreferrer"?productVariantID=hck1n1dKqNTfJZRpCc4PGA" target="_blank" rel="noopener noreferrer" style="color: var(--neon-cyan); text-decoration: underline; margin-top: 10px; display: inline-block;">オンラインマーケット →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-3d" aria-labelledby="projects-title">
+        <div class="container">
+            <h2 id="projects-title" class="section-title title-3d">// Past Events</h2>
+            <div class="timeline timeline-3d">
+                <div class="timeline-item timeline-item-3d">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12</div>
+                        <h3>アドベントカレンダー企画</h3>
+                        <p>今年もアドベントカレンダー完走しました。様々な職種の方々が自分の経験や知識などを色々と書いてくださり、見ごたえがある良いものに仕上がりました。<br>
+                        2025年アドベントカレンダーはこちらです。→<a href="https://qiita.com/advent-calendar/2025/deafengineers" target="_blank" rel="noopener noreferrer" aria-label="2025年デフエンジニアの会アドベントカレンダーを見る（新しいウィンドウで開く）" style="color: var(--neon-cyan); text-decoration: underline;">https://qiita.com/advent-calendar/2025/deafengineers</a></p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-3d">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12</div>
+                        <h3>Zoom勉強会ーAI技術についてー</h3>
+                        <p>メンバーであるぶぬさんから、最新のAIについて、また、少し前のAIとの違いなどを色々と解説いただきました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-3d">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024.03</div>
+                        <h3>Zoom勉強会ーエンジニアとしての心がまえとは？ー</h3>
+                        <p>メンバーであるくまちゃんから、きこえないエンジニアとしてどんな風に仕事をしてきたか、何を心掛けてきたのか？など色々と心構えを話していただきました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-3d">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.11</div>
+                        <h3>Zoom交流会</h3>
+                        <p>メンバー同士でZoomで交流会をし、テーマを設けずに手話で様々なトークをしました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-3d">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023.09</div>
+                        <h3>デフ・ハッカソン企画</h3>
+                        <p>メンバーであるふじえもんさん・ウォーターさん・アンドリューさんを中心に、Google本社のエリアを借りてデフ・ハッカソン企画を行いました。<br>
+                        テーマは「聴覚障害×AI」<br>
+                        詳細はこちらのブログに記されています。→<a href="https://note.com/fujiemon_tad/n/n796d1a786e30" target="_blank" rel="noopener noreferrer" aria-label="デフ・ハッカソン企画の詳細ブログを読む（新しいウィンドウで開く）" style="color: var(--neon-cyan); text-decoration: underline;">https://note.com/fujiemon_tad/n/n796d1a786e30</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Continue link -->
+            <div class="continue-link">
+                <span>> Continue...</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="section-3d" aria-labelledby="schedule-title">
+        <div class="container">
+            <h2 id="schedule-title" class="section-title title-3d">// Upcoming Events</h2>
+            <div class="card-grid-3d">
+                <div class="tech-card card-3d">
+                    <div class="timeline-date">2026.01</div>
+                    <h3>新年会</h3>
+                    <p>メンバー同士での新年会（リアル）を予定しています。</p>
+                </div>
+                <div class="tech-card card-3d">
+                    <div class="timeline-date">2026.01～</div>
+                    <h3>Zoom交流会</h3>
+                    <p>Zoom交流会を予定しています。今後も月１で行う予定です。</p>
+                </div>
+                <div class="tech-card card-3d">
+                    <div class="timeline-date">2026.02～03</div>
+                    <h3>勉強会</h3>
+                    <p>何かしらテーマを設けての勉強会を予定しています。今後も月１で行う予定です。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-3d" aria-labelledby="contact-title">
+        <div class="container">
+            <h2 id="contact-title" class="section-title title-3d">// Contact</h2>
+            <div class="contact-box contact-3d">
+                <h3>// Get in touch</h3>
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    <p style="color: var(--neon-blue); font-size: 1.3rem; margin: 10px 0;">deaf.engineers.japanアットgmail.com</p>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary);">（アットを「@」に変えて送ってください）</p>
+                </div>
+                <div class="contact-item">
+                    <strong>X (Twitter)</strong>
+                    <a href="https://twitter.com/deafengineers" target="_blank" rel="noopener noreferrer" aria-label="デフエンジニアの会のXアカウントを見る（新しいウィンドウで開く）">@deafengineers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 デフエンジニアの会. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script-3d.js"></script>
+</body>
+</html>

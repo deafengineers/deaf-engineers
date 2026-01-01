@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メンバー紹介 | デフエンジニアの会 - Portfolio Style</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DotGothic16&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Import portfolio styles inline for simplicity */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=DotGothic16&family=Rajdhani:wght@300;400;500;600&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Override with portfolio styles */
+        body {
+            font-family: 'DotGothic16', 'Rajdhani', sans-serif;
+            background: #0a0a0f;
+        }
+        
+        nav {
+            background: rgba(10, 10, 15, 0.7);
+            border-bottom: 1px solid rgba(0, 255, 245, 0.1);
+        }
+        
+        .section-title, .hero h1 {
+            font-family: '851Gkktt', sans-serif;
+            background: linear-gradient(90deg, #00fff5, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tech-card {
+            background: rgba(0, 255, 245, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 255, 245, 0.4);
+            border-color: #00fff5;
+        }
+        
+        .member-tag {
+            background: linear-gradient(90deg, #00fff5, #ff00ff);
+            color: #0a0a0f;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle container -->
+    <div class="particle-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Code rain -->
+    <div class="code-rain">
+        <div class="code-column" style="left: 5%; animation-delay: 0s;">01101000 01100101 01101100 01101100 01101111</div>
+        <div class="code-column" style="left: 15%; animation-delay: 2s;">const engineer = true;</div>
+        <div class="code-column" style="left: 25%; animation-delay: 4s;">function create() { return innovation; }</div>
+        <div class="code-column" style="left: 35%; animation-delay: 6s;">while(learning) { skills++; }</div>
+        <div class="code-column" style="left: 45%; animation-delay: 8s;">git commit -m "future"</div>
+        <div class="code-column" style="left: 55%; animation-delay: 10s;">npm install creativity</div>
+        <div class="code-column" style="left: 65%; animation-delay: 12s;">sudo apt-get innovation</div>
+        <div class="code-column" style="left: 75%; animation-delay: 14s;">console.log("技術で未来を");</div>
+        <div class="code-column" style="left: 85%; animation-delay: 16s;">01010100 01100101 01100011 01101000</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index-portfolio.html">Home</a></li>
+            <li><a href="members-portfolio.html">Members</a></li>
+            <li><a href="index-portfolio.html#about">About</a></li>
+            <li><a href="index-portfolio.html#achievements">Achievements</a></li>
+            <li><a href="index-portfolio.html#projects">Past Events</a></li>
+            <li><a href="index-portfolio.html#schedule">Upcoming Events</a></li>
+            <li><a href="https://qiita.com/deafengineers" target="_blank">Blog</a></li>
+            <li><a href="index-portfolio.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Members Page Header -->
+    <section class="hero" style="min-height: 50vh;">
+        <div class="hero-content">
+            <h1 style="font-size: 4rem; font-family: '851Gkktt', sans-serif;">// Members</h1>
+            <p>
+                <span class="terminal-text">$ cat team.json</span><br>
+                私たちのチームを紹介します
+            </p>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members">
+        <div class="container">
+            <h2 class="section-title">// Core Team</h2>
+            <div class="card-grid">
+                <div class="tech-card">
+                    <span class="member-tag">Leader</span>
+                    <h3>山田 太郎</h3>
+                    <p>フルスタックエンジニア。10年以上の開発経験を持ち、Web技術からAIまで幅広く精通。コミュニティの発展に情熱を注いでいます。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">React, Node.js, Python, AI/ML, クラウドアーキテクチャ</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Co-Leader</span>
+                    <h3>佐藤 花子</h3>
+                    <p>UI/UXデザイナー兼フロントエンドエンジニア。美しいインターフェースと使いやすさの両立を追求しています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">UI/UX Design, Figma, React, Vue.js, アクセシビリティ</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Tech Advisor</span>
+                    <h3>鈴木 健一</h3>
+                    <p>機械学習エンジニア。最新のAI技術をコミュニティに共有し、実践的なプロジェクトをリードしています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">機械学習, ディープラーニング, TensorFlow, PyTorch, データサイエンス</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 100px;">// Active Members</h2>
+            <div class="card-grid">
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>田中 美咲</h3>
+                    <p>バックエンドエンジニア。スケーラブルなシステム設計が得意で、勉強会の企画運営も担当しています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Go, Kubernetes, マイクロサービス, データベース設計</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>伊藤 翔太</h3>
+                    <p>モバイルアプリ開発者。iOS/Android両方の開発経験があり、クロスプラットフォーム開発にも精通しています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Swift, Kotlin, React Native, Flutter, モバイルUI/UX</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>中村 あゆみ</h3>
+                    <p>データサイエンティスト。データ分析とビジュアライゼーションを通じて、ビジネス価値を創出しています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Python, R, SQL, Tableau, 統計分析, ビッグデータ</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>高橋 大輔</h3>
+                    <p>セキュリティエンジニア。Webアプリケーションのセキュリティ診断とペネトレーションテストを専門としています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">サイバーセキュリティ, ペネトレーションテスト, OWASP, 脆弱性診断</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>小林 結衣</h3>
+                    <p>DevOpsエンジニア。CI/CDパイプラインの構築とインフラ自動化を通じて開発効率化を推進しています。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Docker, Kubernetes, Jenkins, Terraform, AWS, CI/CD</p>
+                    </div>
+                </div>
+                <div class="tech-card">
+                    <span class="member-tag">Member</span>
+                    <h3>渡辺 健太</h3>
+                    <p>ゲーム開発者。Unityを使った3Dゲーム開発とVR/AR技術の研究に取り組んでいます。</p>
+                    <div style="margin-top: 20px;">
+                        <strong style="color: var(--neon-cyan); font-size: 0.9rem;">専門分野:</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Unity, C#, 3Dモデリング, VR/AR, ゲームデザイン</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section style="padding: 100px 20px;">
+        <div class="container">
+            <div class="about-content" style="text-align: center;">
+                <h3 style="font-size: 2.5rem; margin-bottom: 30px;">// Join Us</h3>
+                <p style="font-size: 1.2rem;">新しいメンバーを随時募集しています！<br>
+                技術に情熱を持つ仲間を歓迎します。</p>
+                <a href="index.html#contact" class="cta-button" style="margin-top: 30px; display: inline-block;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 デフエンジニアの会. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
