@@ -718,6 +718,18 @@
                 font-size: 1rem;
             }
         }
+        .google-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .google-form-container iframe {
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(26, 31, 58, 0.8);
+        }
+        
     </style>
 </head>
 <body>
@@ -877,83 +889,9 @@
                     よりよいサイトづくりのため、皆さまのご意見をお聞かせください。
                 </p>
             </div>
-
-            <form id="surveyForm" class="survey-form" action="https://formsubmit.co/deaf.engineers.japan@gmail.com" method="POST">
-                <!-- FormSubmit settings -->
-                <input type="hidden" name="_subject" value="【デザインアンケート】デフエンジニアの会サイト">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <!-- 送信後、thanks.htmlにリダイレクト-->
-                <input type="hidden" name="_next" value="https://deafengineers.github.io/deaf-engineers/thanks.html">
-                
-                <!-- Question 1 -->
-                <div class="form-group">
-                    <label class="form-label">
-                        <span class="label-icon">1.</span>
-                        どのサイトデザインが良いですか？<span class="required">*</span>
-                    </label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="design_choice" value="スタンダード版" required>
-                            <span class="radio-custom"></span>
-                            <span>スタンダード版</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="design_choice" value="CSS 3D版" required>
-                            <span class="radio-custom"></span>
-                            <span>CSS 3D版</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="design_choice" value="3D背景版" required>
-                            <span class="radio-custom"></span>
-                            <span>3D背景版</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="form-group">
-                    <label class="form-label" for="reason">
-                        <span class="label-icon">2.</span>
-                        選んだ理由は？<span class="required">*</span>
-                    </label>
-                    <textarea 
-                        id="reason" 
-                        name="reason" 
-                        class="form-textarea" 
-                        rows="4" 
-                        placeholder="例：見やすい、動きが面白い、シンプルで好き、など"
-                        required
-                    ></textarea>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="form-group">
-                    <label class="form-label" for="suggestions">
-                        <span class="label-icon">3.</span>
-                        ここをこうしたらもっと良くなるなど何か意見があれば記入してください
-                    </label>
-                    <textarea 
-                        id="suggestions" 
-                        name="suggestions" 
-                        class="form-textarea" 
-                        rows="5" 
-                        placeholder="改善提案、追加してほしい機能、気になった点など、自由にご記入ください"
-                    ></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="form-submit">
-                    <button type="submit" class="submit-button">
-                        <span class="button-icon">📧</span>
-                        <span>送信する</span>
-                    </button>
-                </div>
-
-                <p class="form-note">
-                    ※ ご回答いただいた内容は、サイト改善の参考にさせていただきます。
-                </p>
-            </form>
+            <div class="google-form-container">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdzFkQXzqLoXpYUz86v_A4N3eZs9XlmLiILz8Q74B-7e-UZ2w/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+            </div>
         </div>
     </div>
 
