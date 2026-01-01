@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デフエンジニアの会 - Portfolio Style</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        /* 851ゴチカクット フォント読み込み */
+        @font-face {
+            font-family: '851Gkktt';
+            src: url('fonts/851Gkktt_005.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --primary: #00fff5;
+            --secondary: #ff00ff;
+            --accent: #7c3aed;
+            --dark: #0a0a0f;
+            --text: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Visually hidden but accessible to screen readers */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Enhanced focus styles */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        body {
+            font-family: 'DotGothic16', sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 255, 245, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            position: relative;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a::before {
+            content: '< ';
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+        }
+
+        nav a::after {
+            content: ' />';
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        nav a:hover::before,
+        nav a:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Content wrapper */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            transform: translateZ(100px);
+        }
+
+        .hero-content img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease;
+            filter: drop-shadow(0 0 30px rgba(0, 255, 245, 0.5));
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            animation: slideUp 1s ease 0.3s both;
+            margin-bottom: 1rem;
+        }
+
+        .terminal-text {
+            font-family: '851Gkktt', sans-serif;
+            color: var(--secondary);
+            font-size: 1.49rem;
+            font-weight: 500;
+        }
+
+        .sub-text {
+            font-size: clamp(0.65rem, 1.1vw, 0.85rem) !important;
+            color: var(--primary);
+            display: block;
+            margin-top: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            margin-top: 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            box-shadow: 0 0 30px rgba(0, 255, 245, 0.5);
+            animation: slideUp 1s ease 0.6s both;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 50px rgba(0, 255, 245, 0.7);
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 8rem 3rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Grid background effect */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* About Section */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .content-card {
+            background: rgba(0, 255, 245, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            border-radius: 15px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 245, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-card:hover::before {
+            opacity: 1;
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 255, 245, 0.3);
+        }
+
+        .content-card h3 {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 2.005rem;
+            color: #00cccc;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .content-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+        }
+
+        .content-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .content-card a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: rgba(0, 255, 245, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 245, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-card:hover::before {
+            left: 100%;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 255, 245, 0.4);
+            border-color: var(--primary);
+        }
+
+        .tech-card h3 {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 2.005rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: none;
+            -webkit-text-stroke: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .member-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(10, 10, 15, 0.8);
+            color: var(--primary);
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid transparent;
+            background-image: 
+                linear-gradient(rgba(10, 10, 15, 0.8), rgba(10, 10, 15, 0.8)),
+                linear-gradient(90deg, var(--primary), var(--secondary));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 20px rgba(0, 255, 245, 0.4);
+        }
+
+        .tech-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tech-card a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            padding-left: 120px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--dark);
+            color: var(--primary);
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-family: '851Gkktt', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(0, 255, 245, 0.5);
+        }
+
+        .timeline-content {
+            background: rgba(0, 255, 245, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            border-radius: 15px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(20px);
+            box-shadow: 0 15px 40px rgba(0, 255, 245, 0.3);
+            border-color: var(--primary);
+        }
+
+        .timeline-content h3 {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 2.005rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-shadow: none;
+            -webkit-text-stroke: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .timeline-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0b0b0;
+        }
+
+        /* Continue Link */
+        .continue-link {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+        }
+
+        .continue-link span {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary);
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-shadow: none;
+            -webkit-text-stroke: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .continue-link span:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 15px var(--secondary);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-box {
+            background: rgba(0, 255, 245, 0.05);
+            border: 2px solid rgba(0, 255, 245, 0.3);
+            border-radius: 20px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: -1;
+        }
+
+        .contact-box:hover::before {
+            opacity: 0.3;
+        }
+
+        .contact-box h3 {
+            font-family: '851Gkktt', sans-serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-family: '851Gkktt', sans-serif;
+            font-size: 2.005rem;
+            color: #00ffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-item p {
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .contact-item a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(10, 10, 15, 0.8);
+            border-top: 1px solid rgba(0, 255, 245, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 80px;
+            }
+
+            .timeline-date {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .hero-content img {
+                max-width: 95%;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip link -->
+    <a href="#main-content" class="skip-link">メインコンテンツへスキップ</a>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <div class="content">
+        <!-- Navigation -->
+        <header>
+        <h1 class="visually-hidden">デフエンジニアの会 - ろう者・難聴者のエンジニアコミュニティ</h1>
+            <nav aria-label="メインナビゲーション">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="members-portfolio.html">Members</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Past Events</a></li>
+                <li><a href="#schedule">Upcoming Events</a></li>
+                <li><a href="https://qiita.com/deafengineers" target="_blank" rel="noopener noreferrer">Blog<span class="visually-hidden">（新しいウィンドウで開く）</span></a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <main id="main-content">
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <img src="images/logo-banner.png" alt="デフエンジニアの会">
+                <p><span class="terminal-text">$ echo "Welcome!"</span></p>
+                <p class="sub-text">デフ（Deaf）＋ エンジニア　＝　ろう者・難聴者のエンジニア<br>
+                ※聴者のメンバーも含む</p>
+                <a href="#about" class="cta-button">Initialize</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" aria-labelledby="about-title">
+            <div class="grid-bg"></div>
+            <div class="about-container">
+                <h2 class="section-title">// About</h2>
+                <div class="about-content">
+                    <div class="content-card">
+                        <h3>// Mission</h3>
+                        <p>デフエンジニアの会は、ろう者・難聴者のエンジニアを中心に手話や文字で交流し共に学び成長できる環境を作り、デフエンジニアの社会的地位を高めることを目指しています。</p>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3>// Activities</h3>
+                        <p>勉強会・デフハッカソン・交流会などを開催し、デフエンジニア同士のスキルアップ・情報交換の場を設けています。また、オープンソースプロジェクトへの貢献や手話でエンジニア用語を作成し広める活動を通じてデフエンジニアの存在を可視化し、働く環境を良くすることも目指しています。</p>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3>// Blog</h3>
+                        <p>デフエンジニアの会についてさらに詳しく知りたい方は、Qiitaの記事をご覧ください。<br>
+                        <a href="https://qiita.com/deafengineers/items/22d1814ff85033936ae9" target="_blank" rel="noopener noreferrer" aria-label="デフエンジニアの会の紹介記事を読む（新しいウィンドウで開く）">デフエンジニアの会の紹介記事を読む →</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" aria-labelledby="achievements-title">
+            <div class="grid-bg"></div>
+            <h2 class="section-title">// Achievements</h2>
+            <div class="card-grid">
+                <div class="tech-card">
+                    <h3>ろうなんサポネット</h3>
+                    <p class="member-tag">サイト作成協力</p>
+                    <p>ろう者・難聴者のための情報サイト「ろうなんサポネット」の制作に協力しました。</p>
+                    <a href="https://dhir.jp/kb/" target="_blank" rel="noopener noreferrer" aria-label="ろうなんサポネットのサイトを見る（新しいウィンドウで開く）">サイトを見る →</a>
+                </div>
+                <div class="tech-card">
+                    <h3>技術書典15</h3>
+                    <p class="member-tag">エポックメイキング部門 受賞</p>
+                    <p>技術書典15に出展し、デフエンジニアの会の活動や技術情報を発信しました。そしてエポックメイキング部門で賞をいただきました。</p>
+                    <a href="https://techbookfest.org/event/tbf15" target="_blank" rel="noopener noreferrer" aria-label="技術書典15のイベントページを見る（新しいウィンドウで開く）">イベントページ →</a><br>
+                    <a href="https://techbookfest.org/product/486PQK4z5NM3QqJrqRCRpk?productVariantID=hck1n1dKqNTfJZRpCc4PGA" target="_blank" rel="noopener noreferrer" aria-label="技術書典15のオンラインマーケットを見る（新しいウィンドウで開く）" style="display: inline-block; margin-top: 10px;">オンラインマーケット →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Past Events Section -->
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="grid-bg"></div>
+            <h2 id="projects-title" class="section-title">// Past Events</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.12</div>
+                    <div class="timeline-content">
+                        <h3>アドベントカレンダー企画</h3>
+                        <p>今年もアドベントカレンダー完走しました。様々な職種の方々が自分の経験や知識などを色々と書いてくださり、見ごたえがある良いものに仕上がりました。<br>
+                        2025年アドベントカレンダーはこちらです。→<a href="https://qiita.com/advent-calendar/2025/deafengineers" target="_blank" rel="noopener noreferrer" aria-label="2025年デフエンジニアの会アドベントカレンダーを見る（新しいウィンドウで開く）" style="color: var(--primary); text-decoration: underline;">https://qiita.com/advent-calendar/2025/deafengineers</a></p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.12</div>
+                    <div class="timeline-content">
+                        <h3>Zoom勉強会ーAI技術についてー</h3>
+                        <p>メンバーであるぶぬさんから、最新のAIについて、また、少し前のAIとの違いなどを色々と解説いただきました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024.03</div>
+                    <div class="timeline-content">
+                        <h3>Zoom勉強会ーエンジニアとしての心がまえとは？ー</h3>
+                        <p>メンバーであるくまちゃんから、きこえないエンジニアとしてどんな風に仕事をしてきたか、何を心掛けてきたのか？など色々と心構えを話していただきました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023.11</div>
+                    <div class="timeline-content">
+                        <h3>Zoom交流会</h3>
+                        <p>メンバー同士でZoomで交流会をし、テーマを設けずに手話で様々なトークをしました。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023.09</div>
+                    <div class="timeline-content">
+                        <h3>デフ・ハッカソン企画</h3>
+                        <p>メンバーであるふじえもんさん・ウォーターさん・アンドリューさんを中心に、Google本社のエリアを借りてデフ・ハッカソン企画を行いました。<br>
+                        テーマは「聴覚障害×AI」<br>
+                        詳細はこちらのブログに記されています。→<a href="https://note.com/fujiemon_tad/n/n796d1a786e30" target="_blank" rel="noopener noreferrer" aria-label="デフ・ハッカソン企画の詳細ブログを読む（新しいウィンドウで開く）" style="color: var(--primary); text-decoration: underline;">https://note.com/fujiemon_tad/n/n796d1a786e30</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Continue link -->
+            <div class="continue-link">
+                <span>> Continue...</span>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section id="schedule" aria-labelledby="schedule-title">
+            <div class="grid-bg"></div>
+            <h2 id="schedule-title" class="section-title">// Upcoming Events</h2>
+            <div class="card-grid">
+                <div class="tech-card">
+                    <h3>新年会</h3>
+                    <p class="member-tag">2026.01</p>
+                    <p>メンバー同士での新年会（リアル）を予定しています。</p>
+                </div>
+                <div class="tech-card">
+                    <h3>Zoom交流会</h3>
+                    <p class="member-tag">2026.01～</p>
+                    <p>Zoom交流会を予定しています。今後も月１で行う予定です。</p>
+                </div>
+                <div class="tech-card">
+                    <h3>勉強会</h3>
+                    <p class="member-tag">2026.02～03</p>
+                    <p>何かしらテーマを設けての勉強会を予定しています。今後も月１で行う予定です。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="grid-bg"></div>
+            <div class="contact-container">
+                <h2 class="section-title">// Contact</h2>
+                <div class="contact-box">
+                    <h3>// Get in touch</h3>
+                    <div class="contact-item">
+                        <strong>Email</strong>
+                        <p>deaf.engineers.japanアットgmail.com</p>
+                        <p style="font-size: 0.9rem; color: #888;">（アットを「@」に変えて送ってください）</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>X (Twitter)</strong>
+                        <a href="https://twitter.com/deafengineers" target="_blank" rel="noopener noreferrer" aria-label="デフエンジニアの会のXアカウントを見る（新しいウィンドウで開く）">@deafengineers</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 デフエンジニアの会. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script-portfolio.js"></script>
+    <style>
+        body {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+    </style>
+    <script>
+        // 右クリック無効化
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // テキスト選択無効化
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // コピー無効化
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // キーボードショートカット無効化
+        document.addEventListener('keydown', function(e) {
+            // F12（開発者ツール）
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+I（開発者ツール）
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+Shift+C（要素の検証）
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U（ソース表示）
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
+
+</body>
+</html>
