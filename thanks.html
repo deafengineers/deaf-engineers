@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送信完了 - デフエンジニアの会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: '851Gkktt';
+            src: url('fonts/851Gkktt_005.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --text-primary: #e0e6ed;
+            --text-secondary: #b8b8b8;
+            --neon-cyan: #00ffff;
+            --neon-green: #39ff14;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DotGothic16', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .title {
+            font-family: '851Gkktt', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            letter-spacing: 0.05em;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .terminal-output {
+            background: rgba(26, 31, 58, 0.8);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .terminal-line {
+            color: var(--neon-green);
+            font-family: '851Gkktt', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50px;
+            color: var(--neon-cyan);
+            font-family: '851Gkktt', sans-serif;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .back-button:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-primary);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">送信完了</h1>
+        <p class="message">
+            アンケートにご協力いただき、<br>
+            ありがとうございました！
+        </p>
+        
+        <div class="terminal-output">
+            <div class="terminal-line">$ survey --submit</div>
+            <div class="terminal-line">> Processing...</div>
+            <div class="terminal-line">> Email sent successfully!</div>
+            <div class="terminal-line">> Thank you for your feedback.</div>
+        </div>
+
+        <p class="message">
+            いただいたご意見は、<br>
+            サイト改善の参考にさせていただきます。
+        </p>
+
+        <a href="select.html" class="back-button">デザイン選択に戻る</a>
+    </div>
+</body>
+</html>
