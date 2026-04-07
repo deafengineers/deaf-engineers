@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>デザインアンケート - デフエンジニアの会</title>
+  <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'BIZ UDPGothic', sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      line-height: 1.8;
+    }
+
+    .page-header {
+      background: #ffffff;
+      border-bottom: 3px solid #3EA1DB;
+      padding: 32px 0 28px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: #1a1a1a;
+    }
+
+    .page-header p {
+      font-size: 13px;
+      color: #888;
+      margin: 0;
+      letter-spacing: 0.04em;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== INTRO ===== */
+    .intro {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 32px 36px;
+      margin: 40px auto;
+      max-width: 800px;
+      font-size: 15px;
+      color: #333;
+      line-height: 2;
+    }
+
+    .intro p { margin: 0 0 12px; }
+    .intro p:last-child { margin: 0; }
+
+    /* ===== THEMES ===== */
+    .themes-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #3EA1DB;
+      margin: 0 0 20px;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .themes-grid { grid-template-columns: 1fr; }
+    }
+
+    .theme-card {
+      background: #ffffff;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+
+    .theme-card:hover {
+      border-color: #3EA1DB;
+      box-shadow: 0 4px 16px rgba(62,161,219,0.15);
+      transform: translateY(-2px);
+    }
+
+    .theme-card.selected {
+      border-color: #3EA1DB;
+      box-shadow: 0 4px 20px rgba(62,161,219,0.25);
+    }
+
+    .theme-card.selected .card-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .card-preview {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .preview-blue   { background: #3EA1DB; color: #fff; }
+    .preview-black  { background: #000000; color: #fff; }
+    .preview-white  { background: #ffffff; color: #1a1a1a; border-bottom: 1px solid #e0e0e0; }
+    .preview-white-black { background: #ffffff; color: #1a1a1a; border-bottom: 1px solid #e0e0e0; }
+
+    .card-check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      background: #3EA1DB;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .card-check::after {
+      content: '';
+      width: 8px;
+      height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+
+    .card-body {
+      padding: 16px 20px 20px;
+    }
+
+    .card-name {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: #1a1a1a;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #888;
+      margin: 0 0 14px;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #3EA1DB;
+      text-decoration: none;
+      border: 1px solid #3EA1DB;
+      border-radius: 999px;
+      padding: 5px 14px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .card-link:hover {
+      background: #3EA1DB;
+      color: #fff;
+    }
+
+    /* ===== VOTE BUTTON ===== */
+    .vote-area {
+      text-align: center;
+      padding: 0 0 60px;
+    }
+
+    .vote-note {
+      font-size: 13px;
+      color: #aaa;
+      margin: 0 0 20px;
+    }
+
+    .vote-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 40px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'BIZ UDPGothic', sans-serif;
+      background: #3EA1DB;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.15s;
+    }
+
+    .vote-btn:hover { background: #1a87b5; transform: translateY(-1px); }
+
+    .result-msg {
+      display: none;
+      margin-top: 20px;
+      padding: 20px 28px;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #1a1a1a;
+    }
+
+    .result-msg strong { color: #3EA1DB; }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="container">
+      <h1>デザインアンケート</h1>
+      <p>デフエンジニアの会 HP デザイン案</p>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="intro">
+      <p>前回作成時のアンケートを踏まえ、また、メンバーのめぐるさんが作ってくださったワイヤーフレームと、大城さんが作ってくださったロゴを生かす方向で新たに作成し直しました。</p>
+      <p>なお、大城さんが作ってくれたロゴは色のパターンがいくつかあるので、そのパターンに合わせて4パターンのページを作成しています。</p>
+      <p>今回は、まずどの色パターンが良いかアンケートを取りたいです。よろしくお願いします。</p>
+    </div>
+    
+    <p class="themes-label">どの色が良いか、パターンを選んでください</p>
+
+    <div class="themes-grid">
+
+      <div class="theme-card" onclick="selectTheme(this, 'BLUE')">
+        <div class="card-preview preview-blue">
+          デフエンジニアの会
+          <div class="card-check"></div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">BLUE（ブルー）</p>
+          <p class="card-desc">ブランドカラーの青をベースにした爽やかなデザイン。</p>
+          <a href="index-blue-noto.html" target="_blank" class="card-link" onclick="event.stopPropagation()">プレビューを見る →</a>
+        </div>
+      </div>
+
+      <div class="theme-card" onclick="selectTheme(this, 'BLACK')">
+        <div class="card-preview preview-black">
+          デフエンジニアの会
+          <div class="card-check"></div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">BLACK（ブラック）</p>
+          <p class="card-desc">ダークな背景に青のアクセントが映えるスタイリッシュなデザイン。</p>
+          <a href="index-black-noto.html" target="_blank" class="card-link" onclick="event.stopPropagation()">プレビューを見る →</a>
+        </div>
+      </div>
+
+      <div class="theme-card" onclick="selectTheme(this, 'WHITE-BLUE')">
+        <div class="card-preview preview-white">
+          デフエンジニアの会
+          <div class="card-check"></div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">WHITE × BLUE（白 × 青）</p>
+          <p class="card-desc">清潔感のある白ベースに、青のアクセントを加えたデザイン。</p>
+          <a href="index-white-noto.html" target="_blank" class="card-link" onclick="event.stopPropagation()">プレビューを見る →</a>
+        </div>
+      </div>
+
+      <div class="theme-card" onclick="selectTheme(this, 'WHITE-BLACK')">
+        <div class="card-preview preview-white-black">
+          デフエンジニアの会
+          <div class="card-check"></div>
+        </div>
+        <div class="card-body">
+          <p class="card-name">WHITE × BLACK（白 × 黒）</p>
+          <p class="card-desc">白ベースに黒のアクセントを加えたシンプルなデザイン。</p>
+          <a href="index-white-black-noto.html" target="_blank" class="card-link" onclick="event.stopPropagation()">プレビューを見る →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vote-area">
+      <p class="vote-note">プレビューを確認したら、アンケートにご回答ください</p>
+      <a href="https://forms.gle/VDPzRNZpTzjMFuNQ6" target="_blank" class="vote-btn">アンケートに回答する →</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
